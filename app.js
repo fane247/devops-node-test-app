@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 
-mongoose.connect(process.env.DB_HOST || 'mongodb://localhost/test');
+mongoose.createConnection(process.env.DB_HOST || 'mongodb://localhost/test');
 
 app.set('view engine' , 'ejs');
 
