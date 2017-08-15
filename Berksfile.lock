@@ -1,0 +1,26 @@
+DEPENDENCIES
+  node-server
+    path: cookbooks/node-server
+
+GRAPH
+  ark (3.1.0)
+    build-essential (>= 0.0.0)
+    seven_zip (>= 0.0.0)
+    windows (>= 0.0.0)
+  build-essential (8.0.3)
+    mingw (>= 1.1)
+    seven_zip (>= 0.0.0)
+  compat_resource (12.19.0)
+  mingw (2.0.1)
+    seven_zip (>= 0.0.0)
+  node-server (0.1.0)
+    nodejs (~> 4.0.0)
+  nodejs (4.0.0)
+    ark (>= 2.0.2)
+    build-essential (>= 0.0.0)
+    compat_resource (>= 12.16)
+  ohai (5.1.0)
+  seven_zip (2.0.2)
+    windows (>= 1.2.2)
+  windows (3.1.2)
+    ohai (>= 4.0.0)
