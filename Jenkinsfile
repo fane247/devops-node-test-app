@@ -8,7 +8,7 @@ node('master') {
         
         stage('testing'){
             
-            sh 'ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.139.238 rm -rf "/home/ubuntu/app"'
+            sh 'ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.139.238 sudo rm -rf "/home/ubuntu/app"'
             sh 'scp -o "StrictHostKeyChecking=no" -r ./ ubuntu@18.220.139.238:/home/ubuntu/app'
             
             sh  '''ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.139.238 << EOF
@@ -30,7 +30,7 @@ node('master') {
         stage('deployment'){
         
             sh 'echo deploying'
-            sh 'ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.63.196 rm -rf "/home/ubuntu/app"'
+            sh 'ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.63.196 sudo rm -rf "/home/ubuntu/app"'
             sh 'scp -o "StrictHostKeyChecking=no" -r ./ ubuntu@18.220.63.196:/home/ubuntu/app'
             
             sh '''ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.63.196 << EOF
