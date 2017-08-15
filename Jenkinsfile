@@ -17,7 +17,10 @@ node('master') {
                 pm2 kill
             	cd /home/ubuntu/app
                 export "DB_HOST=mongodb://192.168.10.102/test"
-                ./environment/box_web/provisioning.sh
+                curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk -c stable -v 0.18.30
+                berks vendor cookbooks
+                sudo chef-client --local-mode --runlist "recipe[node-sever]"
+                //  ./environment/box_web/provisioning.sh
             	npm install
                 npm test
             
@@ -35,7 +38,10 @@ node('master') {
 
             	cd /home/ubuntu/app
                 export "DB_HOST=mongodb://192.168.10.102/test"
-                ./environment/box_web/provisioning.sh
+                curl https://omnitruck.chef.io/install.sh | sudo bash -s -- -P chefdk -c stable -v 0.18.30
+                berks vendor cookbooks
+                sudo chef-client --local-mode --runlist "recipe[node-sever]"
+                // ./environment/box_web/provisioning.sh
             	npm install
                 pm2 start app.js -f
             '''
