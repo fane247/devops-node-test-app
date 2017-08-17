@@ -1,6 +1,6 @@
 
 node('master') {
-    
+    cleanWs()
     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '0054d1d9-f36b-4da9-a7b5-9af8d309d4ee', url: 'git@github.com:fane247/devops-node-test-app.git']]])
     
     sshagent(['7ba76d35-94fb-461f-8370-e3b6453dcc6c']) {
@@ -30,7 +30,7 @@ node('master') {
         }
         
         stage('deployment'){
-        
+            
             sh 'echo deploying'
             sh 'ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.63.196 sudo rm -rf "/home/ubuntu/app"'
             sh 'scp -o "StrictHostKeyChecking=no" -r ./ ubuntu@18.220.63.196:/home/ubuntu/app'
