@@ -12,7 +12,7 @@ node('master') {
             sh 'scp -o "StrictHostKeyChecking=no" -r ./ ubuntu@18.220.139.238:/home/ubuntu/app'
 
             sh 'knife zero bootstrap 18.220.139.238 --overwrite --ssh-user ubuntu --node-name testing'
-            sh 'knife zero converge "name:testing" --overwrite --ssh-user ubuntu --override-runlist node_app --overwrite'
+            sh 'knife zero converge "name:testing" --overwrite --ssh-user ubuntu --override-runlist node_app'
 
 
             
