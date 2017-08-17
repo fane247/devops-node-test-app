@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 
     web.vm.provision "chef_solo" do |chef|
       chef.cookbooks_path = ['cookbooks']
-      chef.run_list = ['recipe[node-server::default]']
+      chef.run_list = ['recipe[node_app::default]']
     end
 
   end
