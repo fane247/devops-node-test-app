@@ -10,7 +10,7 @@ node('master') {
             
             sh 'ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.139.238 sudo rm -rf "/home/ubuntu/app"'
             sh 'scp -o "StrictHostKeyChecking=no" -r ./ ubuntu@18.220.139.238:/home/ubuntu/app'
-
+            sh 'berks update'
             sh 'knife zero bootstrap 18.220.139.238 --overwrite --ssh-user ubuntu --node-name testing'
             sh 'knife zero converge "name:testing" --ssh-user ubuntu --override-runlist node_app'
 
@@ -35,6 +35,7 @@ node('master') {
             sh 'ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.63.196 sudo rm -rf "/home/ubuntu/app"'
             sh 'scp -o "StrictHostKeyChecking=no" -r ./ ubuntu@18.220.63.196:/home/ubuntu/app'
 
+            sh 'berks update'
             sh 'knife zero bootstrap 18.220.63.196 --overwrite --ssh-user ubuntu --node-name production'
             sh 'knife zero converge "name:production" --ssh-user ubuntu --override-runlist node_app'
             
