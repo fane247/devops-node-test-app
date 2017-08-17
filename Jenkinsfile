@@ -10,6 +10,11 @@ node('master') {
             
             sh 'ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.139.238 sudo rm -rf "/home/ubuntu/app"'
             sh 'scp -o "StrictHostKeyChecking=no" -r ./ ubuntu@18.220.139.238:/home/ubuntu/app'
+
+            sh 'knife zero bootstrap 18.220.139.238 --ssh-user ubuntu --node-name testing'
+            sh 'knife zero converge "name:production" --ssh-user ubuntu --override node_app'
+
+
             
             sh  '''ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.139.238 << EOF
                 
@@ -17,9 +22,6 @@ node('master') {
                 pm2 kill
             	cd /home/ubuntu/app
                 export "DB_HOST=mongodb://192.168.10.102/test"
-                berks install
-                sudo chef-client --local-mode --runlist "recipe[node-sever]"
-                //  ./environment/box_web/provisioning.sh
             	npm install
                 npm test
             
@@ -32,14 +34,14 @@ node('master') {
             sh 'echo deploying'
             sh 'ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.63.196 sudo rm -rf "/home/ubuntu/app"'
             sh 'scp -o "StrictHostKeyChecking=no" -r ./ ubuntu@18.220.63.196:/home/ubuntu/app'
+
+            sh 'knife zero bootstrap 18.220.63.196 --ssh-user ubuntu --node-name production'
+            sh 'knife zero converge "name:production" --ssh-user ubuntu --override-runlist node_app'
             
             sh '''ssh -o "StrictHostKeyChecking=no" ubuntu@18.220.63.196 << EOF
 
             	cd /home/ubuntu/app
                 export "DB_HOST=mongodb://192.168.10.102/test"
-                berks install
-                sudo chef-client --local-mode --runlist "recipe[node-sever]"
-                // ./environment/box_web/provisioning.sh
             	npm install
                 pm2 start app.js -f
             '''

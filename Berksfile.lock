@@ -1,4 +1,7 @@
 DEPENDENCIES
+  mongo
+    git: git@github.com:fane247/mongo_server_cookbook.git
+    revision: cd9fcd222069c65804a43393a7677464f148daa2
   node-server
     path: cookbooks/node-server
 
@@ -13,13 +16,26 @@ GRAPH
   compat_resource (12.19.0)
   mingw (2.0.1)
     seven_zip (>= 0.0.0)
+  mongo (0.1.0)
   node-server (0.1.0)
     nodejs (~> 4.0.0)
+    pm2 (~> 0.7.4)
   nodejs (4.0.0)
     ark (>= 2.0.2)
     build-essential (>= 0.0.0)
     compat_resource (>= 12.16)
   ohai (5.1.0)
+  pm2 (0.7.4)
+    poise-javascript (~> 1.1.0)
+  poise (2.8.1)
+  poise-archive (1.5.0)
+    poise (~> 2.6)
+  poise-javascript (1.1.0)
+    poise (~> 2.0)
+    poise-languages (~> 2.0)
+  poise-languages (2.1.1)
+    poise (~> 2.5)
+    poise-archive (~> 1.0)
   seven_zip (2.0.2)
     windows (>= 1.2.2)
   windows (3.1.2)

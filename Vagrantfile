@@ -28,7 +28,13 @@ Vagrant.configure("2") do |config|
     db.vm.network "private_network", ip: "192.168.10.102"
     db.hostsupdater.aliases = ["db.local"]
     db.vm.synced_folder "./environment/box_db", "/home/ubuntu/app/environment/box_db"
-    db.vm.provision "shell", path: "environment/box_db/provision.sh"
+    # db.vm.provision "shell", path: "environment/box_db/provision.sh"
+
+    db.vm.provision "chef_solo" do |chef|
+
+      chef.run_list = ['recipe[mongo::default]']
+
+    end
 
   end
 
